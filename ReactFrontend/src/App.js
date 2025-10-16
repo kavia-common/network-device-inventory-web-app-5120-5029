@@ -1,48 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-dom";
+import "./App.css";
+import Dashboard from "./pages/Dashboard";
+import DevicePage from "./pages/DevicePage";
+
+// Utility component to manage focus on route change for accessibility
+function RouteChangeFocus() {
+  const location = useLocation();
+  useEffect(() => {
+    const main = document.querySelector("main");
+    if (main) {
+      main.setAttribute("tabindex", "-1");
+      main.focus();
+    }
+  }, [location]);
+  return null;
+}
 
 // PUBLIC_INTERFACE
 function App() {
-  const [theme, setTheme] = useState('light');
+  /** Root application component: sets theme and routes. */
+  const [theme, setTheme] = useState("light");
 
-  // Effect to apply theme to document element
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   // PUBLIC_INTERFACE
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    /** Toggle light/dark theme. */
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <nav className="navbar" role="navigation" aria-label="Main navigation">
+          <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+            <Link to="/" className="title" aria-label="Go to dashboard">Device Inventory</Link>
+            <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <Link to="/devices/new" className="btn btn-small" aria-label="Add new device">+ Add</Link>
+              <button
+                className="theme-toggle"
+                onClick={toggleTheme}
+                aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              >
+                {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <RouteChangeFocus />
+
+        <div className="container" style={{ paddingTop: 24 }}>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/devices/new" element={<DevicePage />} />
+            <Route path="/devices/:id" element={<DevicePage />} />
+            <Route path="/devices/:id/edit" element={<DevicePage />} />
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
