@@ -11,15 +11,23 @@ export function Status(): JSX.Element {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 5000);
 
+    // Helpful runtime diagnostics
+    // eslint-disable-next-line no-console
+    console.info('[Status] Checking backend health at:', `${apiBase}/health`);
+
     axios
       .get(`${apiBase}/health`, { signal: controller.signal })
       .then((res) => {
         setHealth('ok');
         setDetail(res.data);
+        // eslint-disable-next-line no-console
+        console.info('[Status] Backend health response:', res.data);
       })
       .catch((err) => {
         setHealth('error');
         setDetail({ message: String(err) });
+        // eslint-disable-next-line no-console
+        console.warn('[Status] Backend health error:', err);
       })
       .finally(() => clearTimeout(timeout));
 
