@@ -5,9 +5,9 @@ This frontend uses Vite + React 18 + TypeScript.
 Commands:
 - npm install
 - npm start         # serves on http://localhost:3000 (alias: npm run dev)
-- npm run dev       # same as npm start
+- npm run dev       # same as npm start; use VITE_PORT to change port
 - npm run build
-- npm run preview   # previews build on http://localhost:3000
+- npm run preview   # previews build on http://localhost:3000 (uses VITE_PORT)
 
 Environment:
 - Copy `.env.example` to `.env` (optional). Defaults:
@@ -60,6 +60,7 @@ Verification steps:
      - If error, open browser console and see logs starting with [Status] for diagnostics.
 
 Troubleshooting:
-- If port 3000 is busy, free it or set VITE_PORT in .env. Vite will not auto-switch due to strictPort.
-- If running within a container, ensure port 3000 is exposed and mapped to host.
+- If port 3000 is busy (EADDRINUSE), free it or set VITE_PORT in .env (e.g., 3002). Vite will not auto-switch due to strictPort.
+- If HMR fails to connect over websockets in a preview environment, set VITE_HMR_CLIENT_PORT to the public port (commonly 3000).
+- If running within a container, ensure port 3000 is exposed and mapped to host, and that the server binds to 0.0.0.0 (host: true).
 - If you changed backend port, update VITE_API_BASE_URL and restart dev server.
