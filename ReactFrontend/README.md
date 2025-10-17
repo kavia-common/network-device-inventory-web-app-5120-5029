@@ -9,7 +9,13 @@ Commands:
 - npm run preview
 
 Environment:
-- VITE_API_BASE_URL: Backend API base URL (default http://localhost:5000)
+- Copy `.env.example` to `.env` and set:
+  - VITE_API_BASE_URL: Backend API base URL (default http://localhost:5000)
+    - If running Vite dev server (default http://localhost:5173) and Flask backend on port 5000, the default works.
+
+CORS:
+- Ensure the backend allows your frontend origin (http://localhost:5173 by default).
+- The backend includes flask-cors; set CORS_ALLOW_ORIGINS accordingly in the backend .env if needed.
 
 Dependencies (pinned to latest compatible at time of update):
 - react ^18.3.1
