@@ -25,13 +25,16 @@ Quickstart (local dev):
 - cd ReactFrontend
 - npm install
 - cp .env.example .env   # optional; default API base points to http://localhost:3001
-- npm run dev
-- Visit http://localhost:3000
+- npm start
+- Visit http://localhost:3000 (or the fallback port shown in Vite logs)
+- Static health: http://localhost:3000/health.html
 - Health UI: http://localhost:3000/status (confirms connection to backend /health)
 
 Notes:
+- The dev server binds to 0.0.0.0 and will automatically fallback to the next available port if 3000 is busy.
+- If 3000 is not available in your environment, you can explicitly use: npm run start:3002
 - If you change backend port, update VITE_API_BASE_URL in ReactFrontend/.env.
-- For CORS, ensure backend allows http://localhost:3000 (see backend .env.example).
+- For CORS, ensure backend allows http://localhost:3000 (or the fallback port) (see backend .env.example).
 
 Environment variables introduced:
 - ReactFrontend: VITE_API_BASE_URL (documented in ReactFrontend/.env.example)
