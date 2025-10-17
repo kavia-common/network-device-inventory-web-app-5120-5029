@@ -67,3 +67,7 @@ Troubleshooting:
 - If HMR fails to connect over websockets in a preview environment, set VITE_HMR_CLIENT_PORT to the public port (commonly 3000 or 3002).
 - If running within a container, ensure the chosen port is exposed and mapped, and that the server binds to 0.0.0.0 (host: true).
 - If you changed backend port, update VITE_API_BASE_URL and restart dev server.
+
+Additional notes:
+- Scripts no longer require cross-env; vite.config.ts reads PORT/VITE_PORT and binds to 0.0.0.0 by default.
+- The prestart script is a no-op and will not exit non-zero.

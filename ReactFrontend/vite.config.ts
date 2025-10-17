@@ -9,7 +9,7 @@ import react from '@vitejs/plugin-react';
  * - strictPort is disabled to allow automatic fallback to the next available port.
  * - Adds a startup banner showing the chosen host/port and whether a fallback was used.
  */
-const preferredPort = process.env.PORT || process.env.VITE_PORT || '3000';
+const preferredPort = process.env.VITE_PORT || process.env.PORT || '3000';
 const PORT = Number(preferredPort) || 3000;
 
 // Configure a consistent HMR clientPort for environments that expose a specific public port.
