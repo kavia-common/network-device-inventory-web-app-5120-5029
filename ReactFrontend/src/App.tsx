@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // PUBLIC_INTERFACE
 export default function App(): JSX.Element {
-  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+  const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
   const [health, setHealth] = React.useState<string>('checking...');
   const [detail, setDetail] = React.useState<any>(null);
 

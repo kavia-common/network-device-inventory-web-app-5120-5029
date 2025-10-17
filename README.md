@@ -19,22 +19,22 @@ Quickstart (local dev):
 - pip install --upgrade pip && pip install -r requirements.txt
 - cp .env.example .env   # optional
 - python app.py
-- Verify: GET http://localhost:5000/health
+- Verify: GET http://localhost:3001/health  # backend defaults to port 3001
 
 2) Start frontend (in a new shell)
 - cd ReactFrontend
 - npm install
-- cp .env.example .env   # optional; default API base points to http://localhost:5000
+- cp .env.example .env   # optional; default API base points to http://localhost:3001
 - npm run dev
-- Visit http://localhost:5173
+- Visit http://localhost:3000
 
 Notes:
 - If you change backend port, update VITE_API_BASE_URL in ReactFrontend/.env.
-- For CORS, ensure backend allows http://localhost:5173 (see backend .env.example).
+- For CORS, ensure backend allows http://localhost:3000 (see backend .env.example).
 
 Environment variables introduced:
 - ReactFrontend: VITE_API_BASE_URL (documented in ReactFrontend/.env.example)
-- FlaskBackendAPI: PORT, APP_VERSION, and MongoDB settings (documented in FlaskBackendAPI/.env.example)
+- FlaskBackendAPI: PORT (default 3001), APP_VERSION, and MongoDB settings (documented in FlaskBackendAPI/.env.example)
 
 Manual follow-ups:
 - Wire real CRUD endpoints and MongoDB client in backend.

@@ -10,8 +10,12 @@ Commands:
 
 Environment:
 - Copy `.env.example` to `.env` and set:
-  - VITE_API_BASE_URL: Backend API base URL (default http://localhost:5000)
+  - VITE_API_BASE_URL: Backend API base URL (default http://localhost:3001 per platform backend port)
   - VITE_PORT: Port for Vite dev server and preview (default 3000)
+
+Notes:
+- The Vite config binds host: true and port: 3000 by default to satisfy preview container expectations.
+- If your backend runs on a different port (e.g., 5000 locally), update VITE_API_BASE_URL accordingly.
 
 CORS:
 - Ensure the backend allows your frontend origin (http://localhost:3000 by default).
