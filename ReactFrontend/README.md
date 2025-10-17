@@ -9,13 +9,17 @@ Commands:
 - npm run preview   # previews build on http://localhost:3000
 
 Environment:
-- Copy `.env.example` to `.env` and set:
-  - VITE_API_BASE_URL: Backend API base URL (default http://localhost:3001 per platform backend port)
+- Copy `.env.example` to `.env` (optional). Defaults:
+  - VITE_API_BASE_URL: If not set, the app defaults to http://localhost:3001
   - VITE_PORT: Port for Vite dev server and preview (default 3000)
 
 Notes:
 - The Vite config binds host: true and port: 3000 by default to satisfy preview container expectations.
-- If your backend runs on a different port (e.g., 5000 locally), update VITE_API_BASE_URL accordingly.
+- If your backend runs on a different port (e.g., 5000 locally), set VITE_API_BASE_URL accordingly.
+
+Health/Status:
+- Visit `/status` to see a simple UI status panel.
+- The panel calls GET `${VITE_API_BASE_URL || http://localhost:3001}/health` and displays results.
 
 CORS:
 - Ensure the backend allows your frontend origin (http://localhost:3000 by default).

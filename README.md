@@ -27,6 +27,7 @@ Quickstart (local dev):
 - cp .env.example .env   # optional; default API base points to http://localhost:3001
 - npm run dev
 - Visit http://localhost:3000
+- Health UI: http://localhost:3000/status (confirms connection to backend /health)
 
 Notes:
 - If you change backend port, update VITE_API_BASE_URL in ReactFrontend/.env.

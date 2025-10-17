@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "VITE_PORT=3000 vite",
+    "dev": "VITE_PORT=${VITE_PORT:-3000} vite",
     "build": "tsc -b && vite build",
-    "preview": "VITE_PORT=3000 vite preview",
+    "preview": "VITE_PORT=${VITE_PORT:-3000} vite preview --host",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "echo \"No tests yet\" && exit 0"
