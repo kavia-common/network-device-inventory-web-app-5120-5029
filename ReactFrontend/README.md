@@ -4,17 +4,17 @@ This frontend uses Vite + React 18 + TypeScript.
 
 Commands:
 - npm install
-- npm run dev
+- npm run dev       # serves on http://localhost:3000
 - npm run build
-- npm run preview
+- npm run preview   # previews build on http://localhost:3000
 
 Environment:
 - Copy `.env.example` to `.env` and set:
   - VITE_API_BASE_URL: Backend API base URL (default http://localhost:5000)
-    - If running Vite dev server (default http://localhost:5173) and Flask backend on port 5000, the default works.
+  - VITE_PORT: Port for Vite dev server and preview (default 3000)
 
 CORS:
-- Ensure the backend allows your frontend origin (http://localhost:5173 by default).
+- Ensure the backend allows your frontend origin (http://localhost:3000 by default).
 - The backend includes flask-cors; set CORS_ALLOW_ORIGINS accordingly in the backend .env if needed.
 
 Dependencies (pinned to latest compatible at time of update):
