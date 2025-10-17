@@ -4,7 +4,8 @@ This frontend uses Vite + React 18 + TypeScript.
 
 Commands:
 - npm install
-- npm run dev       # serves on http://localhost:3000
+- npm start         # serves on http://localhost:3000 (alias: npm run dev)
+- npm run dev       # same as npm start
 - npm run build
 - npm run preview   # previews build on http://localhost:3000
 
@@ -49,7 +50,7 @@ Verification steps:
    - cd ReactFrontend
    - npm install
    - cp .env.example .env   # optional
-   - npm run dev
+   - npm start
    - Confirm Vite logs: Local: http://localhost:3000 and Network: http://0.0.0.0:3000
 
 3) Browser verification:
