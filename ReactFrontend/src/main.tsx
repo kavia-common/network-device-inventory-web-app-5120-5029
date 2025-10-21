@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App, { Status } from './App';
+import App from './App';
+import Status from './pages/Status';
 
 // PUBLIC_INTERFACE
 export const router = createBrowserRouter([

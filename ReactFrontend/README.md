@@ -16,18 +16,19 @@ Environment:
   - PORT or VITE_PORT: Preferred port for Vite dev server and preview (default 3000)
   - VITE_HMR_CLIENT_PORT: Public port used by the HMR client (defaults to PORT/VITE_PORT)
 
-Notes:
-- The Vite config binds host: true (0.0.0.0) for both dev and preview, and allows automatic port fallback (strictPort=false).
-- If 3000 is unavailable, Vite chooses the next available port (e.g., 3001/3002). A startup banner logs the final host/port and warns if a fallback was used.
-- If your backend runs on a different port (e.g., 5000 locally), set VITE_API_BASE_URL accordingly.
+API client:
+- A single helper is provided at `src/config/api.ts`:
+  - `getApiBaseUrl()` reads `import.meta.env.VITE_API_BASE_URL` and falls back to `http://localhost:3001`
+  - `api` is a pre-configured Axios instance with `baseURL = getApiBaseUrl()`
+- Use `api.get('/path')` instead of hardcoding full URLs.
 
 Health/Readiness:
 - Static readiness: visit `/health.html` (should return HTTP 200 and body `OK`).
-- UI status page: visit `/status` to see a simple panel that calls GET `${VITE_API_BASE_URL || http://localhost:3001}/health` and displays results.
+- UI status page: visit `/status` to call `GET ${VITE_API_BASE_URL || http://localhost:3001}/health` and display results.
 
 CORS:
 - Ensure the backend allows your frontend origin (http://localhost:3000 by default or whichever fallback port you use).
-- The backend includes flask-cors; set CORS_ALLOW_ORIGINS accordingly in the backend .env if needed.
+- The backend should enable `flask-cors` with `supports_credentials=True` and expose needed headers.
 
 Dependencies (pinned to latest compatible at time of update):
 - react ^18.3.1
